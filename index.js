@@ -1,6 +1,7 @@
-import amqp               from "amqplib/callback_api";
-import async              from "async";
-import mongoose           from "mongoose";
+import amqp      from "amqplib/callback_api";
+import async     from "async";
+import mongoose  from "mongoose";
+import {console} from "./config";
 
 async.parallel({
                    mongo : function (callback) {
@@ -33,7 +34,7 @@ async.parallel({
                    }
                },
                function (err, results) {
-                   if (err){
+                   if (err) {
                        console.error(err);
                        process.exit(1);
                    }
