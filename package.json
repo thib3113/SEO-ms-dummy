@@ -1,0 +1,17 @@
+{
+  "name": "dummy-microservice",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "postinstall": "npm i -g babel-register",
+    "start": "node -r babel-register index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "amqplib": "^0.5.2",
+    "async": "^2.6.0",
+    "mongoose": "^5.0.15"
+  }
+}
