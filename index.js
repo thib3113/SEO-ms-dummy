@@ -43,6 +43,8 @@ async.parallel({
                    //TODO change this
                    let q = "nomDeVotreMicroService";
                    ch.assertQueue(q, {durable: false});
+
+                   //ici vous indiquez le nombre de taches en même temps au max
                    ch.prefetch(10);
 
                    console.debug(" [*] Waiting for messages in %s. To exit kill me", q);
