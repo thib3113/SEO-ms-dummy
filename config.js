@@ -2,6 +2,7 @@ import fs              from "fs";
 import path            from "path";
 import winston         from "winston";
 import DailyRotateFile from "winston-daily-rotate-file";
+import mongoose from "mongoose";
 
 let rootPath = __dirname;
 

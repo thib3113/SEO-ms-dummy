@@ -41,9 +41,9 @@ async.parallel({
 
                    let ch = results.rabbit;
 
-                   //TODO change this
+                   //TODO changer ce nom, et me dire le nom de votre micro service, et quand vous voulez recevoir une tache
                    let q = "nomDeVotreMicroService";
-                   ch.assertQueue(q, {durable: false});
+                   ch.assertQueue(q, {durable: false, maxPriority: 100});
 
                    //ici vous indiquez le nombre de taches en même temps au max
                    ch.prefetch(10);
