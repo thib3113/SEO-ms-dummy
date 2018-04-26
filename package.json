@@ -26,6 +26,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-register": "^6.26.0",
     "mongoose": "^5.0.15",
+    "mysql": "^2.15.0",
     "seo-common": "file:common",
     "winston": "^2.4.1",
     "winston-daily-rotate-file": "^3.1.2"
