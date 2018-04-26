@@ -2,15 +2,16 @@ import amqp                           from "amqplib/callback_api";
 import async                          from "async";
 import mongoose                       from "mongoose";
 import {amqpUrl, console, mongodbUrl, mariaDBUrl} from "./common/config";
+import mysql                          from 'mysql';
 
 //si vous souhaitez ne pas utiliser mongo / rabbit ou mariadb, il vous suffit d'ajouter "return callback(null)" au début de la fonction correspondante
 
 async.parallel({
         mongo : function (callback) {
-            console.debug("start mongo connection");
+            console.log("start mongo connection");
             mongoose.connect(mongodbUrl)
                     .then(() => {
-                        console.debug("mongo connected");
+                        console.log("mongo connected");
                         callback(null, true);
                     })
                     .catch(err => {
@@ -20,7 +21,7 @@ async.parallel({
         },
         rabbit: function (callback) {
             //connect to rabbitMQ
-            console.debug("start rabbitMQ connection");
+            console.log("start rabbitMQ connection");
             amqp.connect(amqpUrl, function (err, conn) {
                 if (err) {
                     console.error("rabbitMQ connection failed");
@@ -28,7 +29,7 @@ async.parallel({
                 }
                 conn.createChannel(function (err, ch) {
                     if (!err) {
-                        console.debug("rabbitMQ connected");
+                        console.log("rabbitMQ connected");
                     }
                     else {
                         console.error("rabbitMQ connection failed");
@@ -38,9 +39,16 @@ async.parallel({
             });
         },
         maria : function (callback) {
-            console.debug("start MariaDB connection : "+mariaDBUrl);
-            console.error("MariaDB connection failed : not yet implemented");
-            callback(null);
+            console.log("start MariaDB connection");
+            let connection;
+            try {
+                connection = mysql.createConnection(mariaDBUrl);
+                console.log("MariaDb connected");
+                callback(null, connection);
+            } catch (e) {
+                console.error("MariaDB connection failed", e);
+                callback(e);
+            }
         }
     },
     function (err, results) {
@@ -58,7 +66,7 @@ async.parallel({
         //ici vous indiquez le nombre de taches en même temps au max
         ch.prefetch(10);
 
-        console.debug(" [*] Waiting for messages in %s. To exit kill me", q);
+        console.log(" [*] Waiting for messages in %s. To exit kill me", q);
         ch.consume(q, function (msg) {
             let task;
             try {
