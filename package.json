@@ -16,9 +16,6 @@
   "dependencies": {
     "amqplib": "^0.5.2",
     "async": "^2.6.0",
-    "mongoose": "^5.0.15",
-    "winston": "^2.4.1",
-    "winston-daily-rotate-file": "^3.1.2",
     "babel-cli": "^6.26.0",
     "babel-plugin-root-import": "^5.1.0",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
@@ -27,6 +24,10 @@
     "babel-plugin-transform-es2015-parameters": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
-    "babel-register": "^6.26.0"
+    "babel-register": "^6.26.0",
+    "mongoose": "^5.0.15",
+    "seo-common": "file:common",
+    "winston": "^2.4.1",
+    "winston-daily-rotate-file": "^3.1.2"
   }
 }
