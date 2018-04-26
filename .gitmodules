@@ -1,0 +1,4 @@
+[submodule "common"]
+	url = git@github.com:thib3113/SEO-COMMON.git
+	path = common
+    branch = master
